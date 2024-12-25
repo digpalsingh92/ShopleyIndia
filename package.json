@@ -1,0 +1,26 @@
+{
+  "name": "shopleyindia",
+  "version": "1.0.0",
+  "description": "It is a Ecommerce website",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon ./server/index.js",
+    "dev": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/digpalsingh92/ShopleyIndia.git"
+  },
+  "author": "Digpal Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/digpalsingh92/ShopleyIndia/issues"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.2",
+    "nodemon": "^3.1.9"
+  }
+}
