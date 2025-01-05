@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { ImageSlider } from "@/types";
 
 const images: ImageSlider[] = [
- { imageUrl: "https://picsum.photos/400/300", url: "/products" },
- {imageUrl:  "https://picsum.photos/seed/picsum/400/300", url: "/products" },
- { imageUrl: "https://picsum.photos/400/300", url: "/products" },
- {imageUrl:  "https://picsum.photos/seed/picsum/400/300", url: "/products" },
- { imageUrl: "https://picsum.photos/400/300", url: "/products" },
- {imageUrl:  "https://picsum.photos/seed/picsum/400/300", url: "/products" },
+ { imageUrl: "/figma_frame.png", url: "/products" },
+//  {imageUrl:  "https://picsum.photos/seed/picsum/400/200", url: "/products" },
+//  { imageUrl: "https://picsum.photos/400/200", url: "/products" },
+//  {imageUrl:  "https://picsum.photos/seed/picsum/400/200", url: "/products" },
+//  { imageUrl: "https://picsum.photos/400/200", url: "/products" },
+//  {imageUrl:  "https://picsum.photos/seed/picsum/400/200", url: "/products" },
 ]
 
 import { CSSProperties } from "react";
@@ -16,8 +16,11 @@ import { Link } from "react-router";
 
 const styles: { slider: CSSProperties; image: CSSProperties; imagediv:CSSProperties } = {
   slider: {
-    width: "55%",
-    height: "350px",
+    width: "100%",
+    maxWidth: "1200px",
+    height: "auto",
+    top: "2rem",
+    maxHeight: "350px",
     overflow: "hidden",
     position: "relative",
     margin: "0 auto",
@@ -25,7 +28,7 @@ const styles: { slider: CSSProperties; image: CSSProperties; imagediv:CSSPropert
   image: {
     width: "100%",
     height: "100%",
-    objectFit: "fill",
+    objectFit: "cover",
   },
   imagediv: {
     position: "absolute",
@@ -37,48 +40,38 @@ const styles: { slider: CSSProperties; image: CSSProperties; imagediv:CSSPropert
     marginBottom: "1rem",
   }
 };
-export function Slider() {
 
+export function Slider() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5555); // Change image every 5 seconds
+    }, 5000); // Change image every 5 seconds
 
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [images.length]);
 
   return (
-    <div style={styles.slider}>
-      <Link to={images[currentIndex].url}>
-      <img
-        src={images[currentIndex].imageUrl}
-        alt={`Slide ${currentIndex + 1}`}
-        style={styles.image}
-        loading="lazy"
-      />
-      </Link>
-      <div 
-      // onClick={() => HandleClick()}
-        style={styles.imagediv}>
-       {images.map((_, index) => (
-         index === currentIndex ? (<CircleDotIcon key={index} className="w-5 h-5 text-white" />) : (<Circle key={index} className="w-4 h-4 text-white" />)
-       ))} 
+    <div className="w-full max-w-4xl mx-auto">
+      <div style={styles.slider}>
+        <Link to={images[currentIndex].url}>
+          <img
+            src={images[currentIndex].imageUrl}
+            alt={`Slide ${currentIndex + 1}`}
+            style={styles.image}
+          />
+        </Link>
+        <div style={styles.imagediv}>
+          {images.map((_, index) => (
+            index === currentIndex ? (
+              <CircleDotIcon key={index} className="w-4 h-4 text-white" />
+            ) : (
+              <Circle key={index} className="w-4 h-4 text-white" />
+            )
+          ))}
         </div>
-    </div>
-  )
-}
-
-{/* <Carousel className="w-[54%] h-[350px] top-6 flex mx-auto">
-<CarouselContent className="flex h-full">
-  {images.map((image, index) => (
-    <CarouselItem key={index} className="w-full">
-      <div className="w-full h-full aspect-video flex mx-auto justify-center">
-        <img src={image} alt={`Slide ${index + 1}`} className="object-cover w-full h-full" />
       </div>
-    </CarouselItem>
-    
-  ))}
-</CarouselContent>
-</Carousel> */}
+    </div>
+  );
+}

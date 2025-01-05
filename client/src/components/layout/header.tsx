@@ -1,11 +1,12 @@
 import {Link} from 'react-router';
-import {ShoppingCart, User, Search } from 'lucide-react'
+import {ShoppingCart, User, Search } from 'lucide-react';
+
 
 
 export default function HeaderPage() {
     const cartCount = 2; //dummy will Modify later
   return (
-    <div className='flex shadow flex-col'>
+    <nav className='flex shadow flex-col'>
         <div className='bg-gray-900 w-full h-10 flex justify-center items-center font-mono'>
             <span className='text-gray-100'>Sale is Started and Free Express Delivery - Upto 85%! <Link to='/' className='underline ml-4'>ShopNow</Link></span>
         </div>
@@ -36,6 +37,6 @@ export default function HeaderPage() {
             </div>
         </div>
         </div>
-    </div>
+    </nav>
   )
 }
